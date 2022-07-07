@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
 const UseStateObject = () => {
+  const [name, setName] = useState("Peter");
+  const [age, setAge] = useState(24);
+  const [message, setMessage] = useState("random message");
+
   const [person, setPerson] = useState({
     name: "Peter",
     age: 24,
@@ -12,13 +16,15 @@ const UseStateObject = () => {
     // using the spread operator we are preserving the old data values,
     //  and then we are overwriting the properties we want.
 
-    setPerson({ ...person, message: "new message" });
+    // setPerson({ ...person, message: "new message" });
+
+    setMessage("new message");
   };
   return (
     <>
-      <h3>{person.name}</h3>
-      <h3>{person.age}</h3>
-      <h3>{person.message}</h3>
+      <h3>{name}</h3>
+      <h3>{age}</h3>
+      <h3>{message}</h3>
       <button type="button" className="btn" onClick={changeMessage}>
         change message
       </button>
