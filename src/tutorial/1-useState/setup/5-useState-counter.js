@@ -7,6 +7,19 @@ const UseStateCounter = () => {
     setValue(0);
   };
 
+  const complexIncrease = () => {
+    setTimeout(() => {
+      // setValue(value + 1);
+      // you can use the functional way in all the previous examples!
+
+      // prevState parameter will contain the actual last state (the most recent updated one)
+      setValue((prevState) => {
+        // whatever value returned here will be the new state
+        return prevState + 1;
+      });
+    }, 2000);
+  };
+
   return (
     <>
       <section style={{ margin: "4rem 0" }}>
@@ -30,6 +43,13 @@ const UseStateCounter = () => {
           }}
         >
           decrease
+        </button>
+      </section>
+      <section style={{ margin: "4rem 0" }}>
+        <h2>more complex counter</h2>
+        <h1>{value}</h1>
+        <button className="btn" onClick={complexIncrease}>
+          increase later
         </button>
       </section>
     </>
