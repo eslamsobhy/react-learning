@@ -1,9 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 // by default runs after every re-render
 // cleanup function
 // second parameter
+
+// use effect is all about the work that is done out side of the component!
 const UseEffectBasics = () => {
-  return <h2>useEffect Basics</h2>;
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    console.log("call use effect!");
+    document.title = `New Messages(${value})`;
+  });
+  console.log("Rendering the component!");
+  return (
+    <>
+      <h1>{value}</h1>
+      <button
+        className="btn"
+        onClick={() => {
+          setValue(value + 1);
+        }}
+      >
+        Increase
+      </button>
+    </>
+  );
 };
 
 export default UseEffectBasics;
