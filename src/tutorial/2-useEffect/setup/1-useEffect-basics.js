@@ -4,11 +4,14 @@ import React, { useState, useEffect } from "react";
 // second parameter
 
 // use effect is all about the work that is done out side of the component!
+// cannot use it conditionally!
 const UseEffectBasics = () => {
   const [value, setValue] = useState(0);
   useEffect(() => {
     console.log("call use effect!");
-    document.title = `New Messages(${value})`;
+    if (value > 0) {
+      document.title = `New Messages(${value})`;
+    }
   });
   console.log("Rendering the component!");
   return (
