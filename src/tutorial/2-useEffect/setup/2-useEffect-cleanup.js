@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 // cleanup function
 // second argument
+// it is a good practice that every and each time you make a side effect is to set up a clean up function!
 
 const UseEffectCleanup = () => {
   const [size, setSize] = useState(window.innerWidth);
