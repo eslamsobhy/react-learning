@@ -4,11 +4,15 @@ import React, { useState } from "react";
 // const inputValue = input.value
 // React
 // value, onChange
+// you have to have a value property that references a state value and don't forget the onChange handler
 
 const ControlledInputs = () => {
+  const [firstName, setFirstName] = useState("");
+  const [email, setEmail] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hello world");
+    console.log("firstName: ", firstName, " Email: ", email);
   };
 
   return (
@@ -18,6 +22,8 @@ const ControlledInputs = () => {
           <div className="form-control">
             <label htmlFor="firstName">Name : </label>
             <input
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               type="text"
               name="firstName"
               id="firstName"
@@ -26,7 +32,14 @@ const ControlledInputs = () => {
           </div>
           <div className="form-control">
             <label htmlFor="email">Email : </label>
-            <input type="text" name="email" id="email" placeholder="Email" />
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Email"
+            />
           </div>
           <button type="submit" onClick={handleSubmit}>
             Submit
