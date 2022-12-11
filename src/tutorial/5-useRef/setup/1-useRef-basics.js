@@ -12,6 +12,13 @@ const UseRefBasics = () => {
     console.log(refContainer.current.value);
   };
 
+  // notice that we don't have to add the dependency list over here
+  // since the re-render will be never trigered!
+  useEffect(() => {
+    // console.log(refContainer.current);
+    refContainer.current.focus();
+  });
+
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
