@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 // reducer function
 const reducer = (state, action) => {
-  console.log(state, action);
+  // console.log(state, action);
   if (action.type === "ADD_ITEM") {
     const newPeople = [...state.people, action.payload];
     return {
@@ -26,6 +26,17 @@ const reducer = (state, action) => {
     return {
       ...state,
       isModalOpen: false,
+    };
+  }
+  if (action.type === "REMOVE_ITEM") {
+    const newPeople = state.people.filter(
+      (person) => person.id !== action.payload
+    );
+    return {
+      ...state,
+      people: newPeople,
+      isModalOpen: true,
+      modalContent: "item removed",
     };
   }
   throw new Error("No matching action type");
@@ -80,8 +91,15 @@ const Index = () => {
       <div>
         {state.people.map((person) => {
           return (
-            <div key={person.id}>
+            <div key={person.id} className="item">
               <h4>{person.name}</h4>
+              <button
+                onClick={() => {
+                  dispatch({ type: "REMOVE_ITEM", payload: person.id });
+                }}
+              >
+                remove
+              </button>
             </div>
           );
         })}
