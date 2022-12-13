@@ -6,6 +6,13 @@ import { data } from "../../../data";
 
 const PropDrilling = () => {
   const [people, setpeople] = useState(data);
+
+  const removePerson = (id) => {
+    setpeople((people) => {
+      return people.filter((person) => person.id !== id);
+    });
+  };
+
   return (
     <section>
       <h3>prop drilling</h3>
@@ -18,7 +25,7 @@ const List = ({ people }) => {
   return (
     <>
       {people.map((person) => {
-        return <SinglePerson key={person.id} />;
+        return <SinglePerson key={person.id} {...person} />;
       })}
     </>
   );
@@ -27,7 +34,8 @@ const List = ({ people }) => {
 const SinglePerson = ({ id, name }) => {
   return (
     <div className="item">
-      <h4>Single person</h4>
+      <h4>{name}</h4>
+      <button>remove</button>
     </div>
   );
 };
