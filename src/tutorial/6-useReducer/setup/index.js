@@ -1,6 +1,8 @@
 import React, { useState, useReducer } from "react";
 import Modal from "./Modal";
 import { data } from "../../../data";
+import { useRef } from "react";
+import { useEffect } from "react";
 // reducer function
 const reducer = (state, action) => {
   console.log(state, action);
@@ -31,6 +33,7 @@ const defaultState = {
 
 const Index = () => {
   const [name, setName] = useState("");
+  const nameRef = useRef(null);
   const [state, dispatch] = useReducer(reducer, defaultState);
 
   const handleSubmit = (e) => {
@@ -44,6 +47,10 @@ const Index = () => {
     }
   };
 
+  useEffect(() => {
+    nameRef.current.focus();
+  });
+
   return (
     <>
       {state.isModalOpen && <Modal modalContent={state.modalContent} />}
@@ -53,6 +60,7 @@ const Index = () => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            ref={nameRef}
           />
         </div>
         <button type="submit">add</button>
