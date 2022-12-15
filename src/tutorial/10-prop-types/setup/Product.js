@@ -5,13 +5,14 @@ import defaultImage from "../../../assets/default-image.jpeg";
 import PropTypes from "prop-types";
 
 const Product = ({ image, name, price }) => {
-  console.log(image, name, price);
+  // console.log(image, name, price);
+  const url = image && image.url;
+  // console.log(url);
   return (
     <article className="product">
-      {/* <h4>Single product</h4> */}
-      <img src={image.url} alt={name} />
-      <h4>{name}</h4>
-      <p>${price}</p>
+      <img src={url || defaultImage} alt={name || "default name"} />
+      <h4>{name || "default name"}</h4>
+      <p>${price || 3.99}</p>
     </article>
   );
 };
@@ -22,10 +23,10 @@ Product.propTypes = {
   price: PropTypes.number.isRequired,
 };
 
-Product.defaultProps = {
-  name: "default name",
-  price: 3.99,
-  image: { url: defaultImage },
-};
+// Product.defaultProps = {
+//   name: "default name",
+//   price: 3.99,
+//   image: defaultImage,
+// };
 
 export default Product;
