@@ -1,10 +1,14 @@
 import React from "react";
-import Setup from "./tutorial/9-custom-hooks/setup/4-input-example";
+import Setup from "./tutorial/11-react-router/setup";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
     <div className="container">
-      <Setup />
+      <Router>
+        {" "}
+        <Setup />
+      </Router>
     </div>
   );
 }
