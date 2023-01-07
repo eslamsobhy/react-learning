@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo, memo } from "react";
 import { useFetch } from "../../9-custom-hooks/final/2-useFetch";
 
 // ATTENTION!!!!!!!!!!
@@ -22,7 +22,7 @@ const Index = () => {
   );
 };
 
-const BigList = ({ products }) => {
+const BigList = memo(({ products }) => {
   useEffect(() => {
     console.log("The big list rerendered");
   });
@@ -34,7 +34,7 @@ const BigList = ({ products }) => {
       })}
     </section>
   );
-};
+});
 
 const SingleProduct = ({ fields }) => {
   useEffect(() => {
