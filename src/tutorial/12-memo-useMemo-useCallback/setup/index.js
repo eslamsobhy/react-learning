@@ -12,11 +12,18 @@ const Index = () => {
   const [count, setCount] = useState(0);
   const [cart, setCart] = useState(0);
 
+  // useCallback:
+  // is the value of that function changed? if so, re-create the function!
+  // if not, do not re-create it!
+  // the dependency array is needed just like in useEffect,because we need to call it..
+  // ..each time the cart changes, not just after the first render
+
   // we encountered the same problem again, because react thinks that by calling the addToCart method
   // we are recreating it again, thus the props changed, thus the component re-renders!
-  const addToCart = () => {
+
+  const addToCart = useCallback(() => {
     setCart(cart + 1);
-  };
+  }, [cart]);
 
   return (
     <>
@@ -24,6 +31,7 @@ const Index = () => {
       <button className="btn" onClick={() => setCount(count + 1)}>
         click me
       </button>
+      <h1 style={{ margin: "20px" }}> Cart: {cart}</h1>
       <BigList products={products} addToCart={addToCart} />
     </>
   );
