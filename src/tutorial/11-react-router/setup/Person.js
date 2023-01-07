@@ -9,6 +9,9 @@ const Person = () => {
   return (
     <div>
       <h2>{person.name}</h2>
+      <Link className="btn" to="/people">
+        back to people
+      </Link>
     </div>
   );
 };
