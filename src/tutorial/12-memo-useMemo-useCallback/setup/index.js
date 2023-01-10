@@ -37,6 +37,9 @@ const Index = () => {
     return mostExpensive / 100;
   };
 
+  // memoizing the value of the function, until the param changes
+  const mostExpensive = useMemo(() => getMostExpensive(products), [products]);
+
   return (
     <>
       <h1>Count : {count}</h1>
@@ -44,7 +47,7 @@ const Index = () => {
         click me
       </button>
       <h1 style={{ margin: "20px" }}> Cart: {cart}</h1>
-      <h1>Most Expensive: ${getMostExpensive(products)}</h1>
+      <h1>Most Expensive: ${mostExpensive}</h1>
       <BigList products={products} addToCart={addToCart} />
     </>
   );
