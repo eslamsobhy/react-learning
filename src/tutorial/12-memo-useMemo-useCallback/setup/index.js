@@ -25,6 +25,18 @@ const Index = () => {
     setCart(cart + 1);
   }, [cart]);
 
+  // the most expensive item from data
+  const getMostExpensive = (data) => {
+    console.log("the function is being re-created!");
+    const mostExpensive = data.reduce((total, item) => {
+      if (item.fields.price > total) {
+        total = item.fields.price;
+      }
+      return total;
+    }, 0);
+    return mostExpensive / 100;
+  };
+
   return (
     <>
       <h1>Count : {count}</h1>
@@ -32,6 +44,7 @@ const Index = () => {
         click me
       </button>
       <h1 style={{ margin: "20px" }}> Cart: {cart}</h1>
+      <h1>Most Expensive: ${getMostExpensive(products)}</h1>
       <BigList products={products} addToCart={addToCart} />
     </>
   );
